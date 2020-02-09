@@ -21,6 +21,10 @@ dependencies:
   flutter_rating_bar: ^1.1.0
   image_picker: ^0.6.0+17
   firebase_storage: ^3.0.3
+  signature: ^3.0.0
+  flutter_signature_pad: ^2.0.1
+  screenshot: ^0.1.1
+  flutter_svg: ^0.17.1
 
   firebase_auth:
   flutter:
@@ -53,6 +57,16 @@ flutter:
     - images/feed.jpg
     - images/logo.png
     - images/propic.png
+    - images/smile1.png
+    - images/blockchain.png
+    - images/brl.svg
+    - images/bg.png
+    - images/bg2.jfif
+    - images/bg3.jpg
+    - images/bg5.png
+    - images/bg6.jpg
+    - images/bg7.jfif
+    -
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

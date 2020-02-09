@@ -14,9 +14,12 @@ class uploadpic extends StatefulWidget{
 
   final String email;
   uploadpic(this.email);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
+
+
     return uploadpicstate(this.email);
   }
 
@@ -31,14 +34,25 @@ class uploadpicstate extends State<uploadpic>
   uploadpicstate(this.email);
   File _image;
   String _uploadedFileURL;
+  AssetImage _imageToShow;
+
+
+
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
 
       body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
+              )
+          ),
 
           child: Container(
+
             margin: EdgeInsets.only(top: 150),
             alignment: Alignment.center,
             child: Column(
@@ -49,11 +63,9 @@ class uploadpicstate extends State<uploadpic>
                 SizedBox(
                   height: 5,
                 ),
+
                 _image != null
-                    ? Image.asset(
-                  _image.path,
-                  height: 150,
-                )
+                    ? imagepic()
                     : uploadimage(),
                 SizedBox(height: 5,),
                 _image == null
@@ -170,6 +182,8 @@ class uploadpicstate extends State<uploadpic>
     await ImagePicker.pickImage(source: ImageSource.camera).then((image) {
       setState(() {
         _image = image;
+        debugPrint(_image.path);
+
       });
     });
   }
@@ -203,5 +217,24 @@ class uploadpicstate extends State<uploadpic>
     }
   }
 
+  void printi()
+  {
+    debugPrint(_image.path);
+  }
+
+
+  Widget imagepic() {
+
+
+
+      _imageToShow = AssetImage(_image.path);
+
+
+    Image image = Image(image: _imageToShow, width: 150, height: 150);
+    return Container(
+      child: image,
+
+    );
+  }
 
 }

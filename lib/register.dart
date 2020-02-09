@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:feedback_manager/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+
 
 class register extends StatefulWidget {
   @override
@@ -14,7 +17,14 @@ class register extends StatefulWidget {
 
 class registerstate extends State<register> {
 
+ static String assetName = 'images/brl.svg';
+  final Widget svg = SvgPicture.asset(
 
+      assetName,
+      width: 90,
+      height: 80,
+      semanticsLabel: 'BRL LOGO'
+  );
 
   final key = GlobalKey<FormState>();
   final dataRefrence = Firestore.instance;
@@ -42,29 +52,33 @@ class registerstate extends State<register> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('images/bg.jfif'), fit: BoxFit.cover)),
+                image: AssetImage('images/bg7.jfif'), fit: BoxFit.cover)),
         child: ListView(
           children: <Widget>[
             Container(
               margin: EdgeInsets.all(45.0),
 
             ),
-
-            brlimage(),
+brlimage()
+         ,
             Container(
               margin: EdgeInsets.all(10.0),
 
             ),
 
-            Form(
+          Container(
+
+
+          child: Form(
                 key: key,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                  padding: EdgeInsets.only(left: 40.0,right: 40.0),
                   child: Column(
                     children: <Widget>[
                   Theme(
                   data: Theme.of(context).copyWith(splashColor: Colors.transparent),
                   child:
+
                   TextFormField(
                         controller: fnamecont,
 
@@ -76,9 +90,9 @@ class registerstate extends State<register> {
                             color: Colors.white,
                             fontSize: 12.0,
                           ),
-                          labelText: 'First Name',
 
-                          hintText: '',
+
+                          hintText: 'First Name',
                           labelStyle: TextStyle(
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
@@ -89,9 +103,13 @@ class registerstate extends State<register> {
                           ),
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter First Name';
+                          if (value.isEmpty || value == " ") {
+                            return 'Enter Name Please';
                           }
+                          if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]').hasMatch(value) ) {
+                            return 'Enter Name Correctly Please';
+                          }
+
                         },
                       )),
                       SizedBox(
@@ -106,8 +124,9 @@ class registerstate extends State<register> {
                             color: Colors.white,
                             fontSize: 12.0,
                           ),
-                          labelText: 'Last Name',
-                          hintText: '',
+
+                          hintText: 'Last Name',
+
                           labelStyle: TextStyle(
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
@@ -117,8 +136,11 @@ class registerstate extends State<register> {
                           ),
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Last Name';
+                          if (value.isEmpty || value == " ") {
+                            return 'Enter Name Please';
+                          }
+                          if (RegExp(r'[!@#<>?":_`~;[\]\\|=+)(*&^%0-9-]').hasMatch(value) ) {
+                            return 'Enter Name Correctly Please';
                           }
                         },
                       ),
@@ -127,6 +149,7 @@ class registerstate extends State<register> {
                       ),
                       TextFormField(
                         controller: agecont,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
@@ -134,8 +157,8 @@ class registerstate extends State<register> {
                             color: Colors.white,
                             fontSize: 12.0,
                           ),
-                          labelText: 'Age',
-                          hintText: '',
+
+                          hintText: 'Age',
                           labelStyle: TextStyle(
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
@@ -146,7 +169,7 @@ class registerstate extends State<register> {
                         ),
                         validator: (String value) {
                           if (value.isEmpty) {
-                            return 'Age';
+                            return 'Please Enter Your Age';
                           }
                         },
                       ),
@@ -155,6 +178,7 @@ class registerstate extends State<register> {
                       ),
 
                       TextFormField(
+
                         controller: emailcont,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -162,10 +186,12 @@ class registerstate extends State<register> {
                           errorStyle: TextStyle(
                             color: Colors.white,
                             fontSize: 12.0,
+
                           ),
-                          labelText: 'Email Id',
-                          hintText: '',
+
+                          hintText: 'Email ID',
                           labelStyle: TextStyle(
+
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
@@ -174,15 +200,17 @@ class registerstate extends State<register> {
                           ),
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Email ID';
+                          if (value.isEmpty || value == " ") {
+                            return 'Enter Email ID';
                           }
+
                         },
                       ),
                       SizedBox(
                         height: 2,
                       ),
                       TextFormField(
+                        keyboardType: TextInputType.number,
                         controller: mobilecont,
                         decoration: InputDecoration(
                           fillColor: Colors.white,
@@ -191,8 +219,8 @@ class registerstate extends State<register> {
                             color: Colors.white,
                             fontSize: 12.0,
                           ),
-                          labelText: 'Mobile No.',
-                          hintText: '',
+
+                          hintText: 'Mobile No.',
                           labelStyle: TextStyle(
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
@@ -202,9 +230,10 @@ class registerstate extends State<register> {
                           ),
                         ),
                         validator: (String value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Mobile No.';
+                          if (value.isEmpty || value == " ") {
+                            return 'Enter Mobile Please';
                           }
+
                         },
                       ),
                       SizedBox(
@@ -242,7 +271,7 @@ class registerstate extends State<register> {
                           )),
                     ],
                   ),
-                ))
+                )))
           ],
         ),
       ),
@@ -263,7 +292,8 @@ class registerstate extends State<register> {
     String name = fnamecont.text+" "+lnamecont.text;
 
 await dataRefrence.collection('Register').document(emailcont.text).setData({
-  'name': name, 'age': agecont.text , 'emailid': emailcont.text, 'mobileno': mobilecont.text, 'picimgurl': 'blank',
+  'name': name, 'age': agecont.text , 'emailid': emailcont.text, 'mobileno': mobilecont.text, 'picimgurl': 'blank', 'sign': 'blank',
+  'status': 'Pending',
 
   'ans1': 'blank' , 'ans1rating': 'blank', 'ans2': 'blank','ans2rating': 'blank', 'ans3': 'blank','ans3rating': 'blank',
 

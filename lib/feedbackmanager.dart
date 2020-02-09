@@ -371,7 +371,7 @@ Row(
                     setState(() {
                       updateData();
 
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)
+                      Navigator.push(context, MaterialPageRoute(builder: (context)
                       {
                         return uploadpic(email);
                       }));
