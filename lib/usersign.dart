@@ -21,6 +21,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 
+import 'package:feedback_manager/BaseWidget.dart';
+
 class usersign extends StatefulWidget{
 
   final String email;
@@ -81,59 +83,63 @@ class usersignState extends State<usersign> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:Container(  child: Column(
 
-        children: <Widget>[
-          Expanded(
-            child: Container(
 
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: _uploadedFileURL == null
-                    ? Signature(
-                        color: color,
-                        key: _sign,
-                        onSign: () {
-                          final sign = _sign.currentState;
-                          debugPrint(
-                              '${sign.points.length} points in the signature');
-                        },
-                        backgroundPainter: _WatermarkPaint("2.0", "2.0"),
-                        strokeWidth: strokeWidth,
-                      )
-                    : Container(),
-              ),
-              color: Colors.white,
-            ),
-          ),
-          _img.buffer.lengthInBytes == 0
-              ? Container()
-              : Container(child: Image.memory(_img.buffer.asUint8List())),
-        Container( decoration: BoxDecoration(
-    image: DecorationImage(
-    image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
-    )
-    ), child:   Column(
+    return BaseWidget(builder: (context, sizingInformation)
+    {
+      return Scaffold(
+          body: Container(child: Column(
+
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  flag2 == false
-                      ? Text(
-                          'Please Sign To Continue',
-                          textScaleFactor: 1.2,
-                        )
-                      : Container(),
-                  SizedBox(
-                    height: 2,
+              Expanded(
+                child: Container(
+
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _uploadedFileURL == null
+                        ? Signature(
+                      color: color,
+                      key: _sign,
+                      onSign: () {
+                        final sign = _sign.currentState;
+                        debugPrint(
+                            '${sign.points.length} points in the signature');
+                      },
+                      backgroundPainter: _WatermarkPaint("2.0", "2.0"),
+                      strokeWidth: strokeWidth,
+                    )
+                        : Container(),
                   ),
-                ],
+                  color: Colors.white,
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  flag2 == false
-                      ? MaterialButton(
+              _img.buffer.lengthInBytes == 0
+                  ? Container()
+                  : Container(child: Image.memory(_img.buffer.asUint8List())),
+              Container(decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
+                  )
+              ), child: Column(
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      flag2 == false
+                          ? Text(
+                        'Please Sign To Continue',
+                        textScaleFactor: 1.2,
+                      )
+                          : Container(),
+                      SizedBox(
+                        height: 2,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      flag2 == false
+                          ? MaterialButton(
                           color: Colors.blue,
                           elevation: 5,
                           onPressed: () async {
@@ -144,7 +150,7 @@ class usersignState extends State<usersign> {
                                 format: ui.ImageByteFormat.png);
                             sign.clear();
                             final encoded =
-                                base64.encode(data.buffer.asUint8List());
+                            base64.encode(data.buffer.asUint8List());
                             setState(() {
                               _img = data;
                               flag1 = true;
@@ -158,9 +164,9 @@ class usersignState extends State<usersign> {
                             "Save",
                             style: TextStyle(color: Colors.white),
                           ))
-                      : Container(),
-                  flag2 == false
-                      ? MaterialButton(
+                          : Container(),
+                      flag2 == false
+                          ? MaterialButton(
                           color: Colors.grey,
                           elevation: 5,
                           onPressed: () {
@@ -175,92 +181,90 @@ class usersignState extends State<usersign> {
                             "Clear",
                             style: TextStyle(color: Colors.white),
                           ))
+                          : Container(),
+                    ],
+                  ),
+                  flag1 == true
+                      ? Column(
+                    children: <Widget>[
+                      CircularProgressIndicator(
+                        strokeWidth: 5,
+                      ),
+                      SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        'Saving Signature . . .',
+                        textScaleFactor: 1.2,
+                      ),
+                    ],
+                  )
                       : Container(),
-                ],
-              ),
-              flag1 == true
-                  ? Column(
-                      children: <Widget>[
-                        CircularProgressIndicator(
-                          strokeWidth: 5,
-                        ),
-                        SizedBox(
-                          height: 3,
-                        ),
-                        Text(
-                          'Saving Signature . . .',
-                          textScaleFactor: 1.2,
-                        ),
-                      ],
-                    )
-                  : Container(),
-              flag1 == false
-                  ? Text(
-                      'Signature Saved Successfully',
-                      textScaleFactor: 1.2,
-                    )
-                  : Container(),
-              SizedBox(
-                height: 3,
-              ),
-              flag1 == false
-                  ? MaterialButton(
+                  flag1 == false
+                      ? Text(
+                    'Signature Saved Successfully',
+                    textScaleFactor: 1.2,
+                  )
+                      : Container(),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  flag1 == false
+                      ? MaterialButton(
                       color: Colors.blue,
                       elevation: 7,
                       onPressed: () {
                         setState(() {
-
-
-                          Navigator.push(context, MaterialPageRoute(builder: (context)
-                          {
-
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) {
                             return thankyou(email);
                           }));
                         });
-
                       },
                       child: Text(
                         "Sumbit Feedback :)",
                         style: TextStyle(color: Colors.white),
                       ))
-                  : Container(),
-              SizedBox(
-                height: 10,
-              ),
-              flag2 == false
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        MaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                color = color == Colors.green
-                                    ? Colors.red
-                                    : Colors.green;
-                              });
-                              debugPrint("change color");
-                            },
-                            child: Text("Change color")),
-                        MaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                int min = 1;
-                                int max = 10;
-                                int selection =
-                                    min + (Random().nextInt(max - min));
-                                strokeWidth = selection.roundToDouble();
-                                debugPrint("change stroke width to $selection");
-                              });
-                            },
-                            child: Text("Change stroke width")),
-                      ],
-                    )
-                  : Container(),
+                      : Container(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  flag2 == false
+                      ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      MaterialButton(
+                          onPressed: () {
+                            setState(() {
+                              color = color == Colors.green
+                                  ? Colors.red
+                                  : Colors.green;
+                            });
+                            debugPrint("change color");
+                          },
+                          child: Text("Change color")),
+                      MaterialButton(
+                          onPressed: () {
+                            setState(() {
+                              int min = 1;
+                              int max = 10;
+                              int selection =
+                                  min + (Random().nextInt(max - min));
+                              strokeWidth = selection.roundToDouble();
+                              debugPrint("change stroke width to $selection");
+                            });
+                          },
+                          child: Text("Change stroke width")),
+                    ],
+                  )
+                      : Container(),
+                ],
+              )
+              )
             ],
-          )
-        )],
-      ),
-    ));
+          ),
+          ));
+    });
   }
 
   Future uploadFile() async {

@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:feedback_manager/register.dart';
+import 'package:feedback_manager/BaseWidget.dart';
 
 
 
@@ -42,6 +43,8 @@ class splashstate extends State<splash>{
 
   @override
   Widget build(BuildContext context) {
+
+    return BaseWidget(builder: (context, sizingInformation) {
     // TODO: implement build
     return Scaffold(
 
@@ -104,7 +107,7 @@ class splashstate extends State<splash>{
       ),
       )
     );
-  }
+    });}
 
 
 }

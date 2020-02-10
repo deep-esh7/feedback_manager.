@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:feedback_manager/BaseWidget.dart';
 
 
 class thankyou extends StatefulWidget {
@@ -35,6 +37,8 @@ class thankyoustate extends State<thankyou>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    return BaseWidget(builder: (context, sizingInformation) {
     return Scaffold(
 
       body: Container(decoration: BoxDecoration(
@@ -88,19 +92,51 @@ class thankyoustate extends State<thankyou>{
                 updateData();
                 exit(0);
               },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
               child: Text(
                 'Click Here To Close The App',style: TextStyle(
                 color: Colors.white
               ),
               ),
-            )
+            ),
+SizedBox(height: 5,),
+            Container(
+
+                child: Row
+                  (
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+
+                    GestureDetector(onTap: () async {
+                      if (await canLaunch("https://instagram.com/brl_akgec")) {
+                        await launch("https://instagram.com/brl_akgec");
+                      }
+                      else {
+                        throw 'Could not launch';
+                      }
+                    },
+              child:
+ CircleAvatar(
+
+                      backgroundColor: Colors.white,
+                      radius: 25,
+                      child: Image.asset('images/instagram.png',height: 40, width: 40,),
+                    )),
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 25,
+                      child: Image.asset('images/facebook.png',height: 40, width: 40,),
+                    ),
+                    ],
+                )
+            ),
 
 
           ],
         ),),
 
 
-    );
+    );});
   }
     void updateData() {
       try {

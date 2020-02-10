@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // For Image Picker
 import 'package:path/path.dart' as Path;
 import 'package:feedback_manager/usersign.dart';
+import 'package:feedback_manager/BaseWidget.dart';
 
 
 class uploadpic extends StatefulWidget{
@@ -41,117 +42,126 @@ class uploadpicstate extends State<uploadpic>
   @override
   Widget build(BuildContext context) {
 
-    // TODO: implement build
-    return Scaffold(
+    return BaseWidget(builder: (context, sizingInformation)
+    {
+      // TODO: implement build
+      return Scaffold(
 
-      body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
-              )
-          ),
-
-          child: Container(
-
-            margin: EdgeInsets.only(top: 150),
-            alignment: Alignment.center,
-            child: Column(
-              children: <Widget>[
-
-
-               _image != null? Text('Selected Image',textScaleFactor: 1.2,):Text('Please Upload an Image to Verify Yourself!',textScaleFactor: 1.2,),
-                SizedBox(
-                  height: 5,
-                ),
-
-                _image != null
-                    ? imagepic()
-                    : uploadimage(),
-                SizedBox(height: 5,),
-                _image == null
-                    ? RaisedButton(
-                  color: Colors.blue,
-                  elevation: 5,
-                  child: Text('Capture Photo',textScaleFactor: 1.2,style: TextStyle(
-                    color: Colors.white,
-                  ),),
-                  onPressed: (){
-                    setState(() {
-                      chooseFile();
-                      flag2=true;
-                    });
-                 },
-
+        body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
                 )
-                    : Container(),
-                flag2==true
-                    ? RaisedButton(
-                  color: Colors.blue,
-                  elevation: 5,
-                  child: Text('Upload File',textScaleFactor: 1.2,style: TextStyle(
-                    color: Colors.white,
-                  ),),
-                  onPressed: ()
-                  {setState(() {
-
-
-                    uploadFile();
-
-
-
-                  });},
-
-                )
-                    : Container(),
-                  SizedBox(height: 5,),
-                  flag==true?CircularProgressIndicator(backgroundColor: Colors.blue,strokeWidth: 10,semanticsLabel: 'Uploading Image',
-                  semanticsValue: 'Uploading Image',):Container(),
-                SizedBox(height: 7),
-                flag==true?Text('Uploading Please Wait..',textScaleFactor: 1.5,):Container(),
-
-
-
-                _uploadedFileURL!=null?Container(
-
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 2,),
-
-                      Text("Image Has Been Uploaded Successfully",textScaleFactor: 1.5,textAlign: TextAlign.center,),
-                      SizedBox(height: 5),
-                      RaisedButton(
-                        color: Colors.blue,
-                        elevation: 5,
-                        onPressed: ()
-                        {
-                          setState(() {
-
-                            Navigator.push(context, MaterialPageRoute(builder: (context)
-                            {
-
-                              return usersign(email);
-                            }));
-                          });
-                        },
-                        child: Text('Click Here To Continue',textScaleFactor: 1.2,style: TextStyle(
-                          color: Colors.white,
-                        ),),
-                      )
-
-
-                    ],
-                  ),
-                ):Container(),
-
-
-
-
-              ],
             ),
-          )
-  ),
 
-    );
+            child: Container(
+
+              margin: EdgeInsets.only(top: 0),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+
+
+
+
+                  _image != null
+                      ? Text('Selected Image', textScaleFactor: 1.2,)
+                      : Text('Please Upload an Image to Verify Yourself!',
+                    textScaleFactor: 1.2,),
+                  SizedBox(
+                    height: 5,
+                  ),
+
+                  _image != null
+                      ? Image.file(_image, height: 150,)
+                      : uploadimage(),
+                  SizedBox(height: 5,),
+                  _image == null
+                      ? RaisedButton(
+                    color: Colors.blue,
+                    elevation: 5,
+                    child: Text(
+                      'Capture Photo', textScaleFactor: 1.2, style: TextStyle(
+                      color: Colors.white,
+                    ),),
+                    onPressed: () {
+                      setState(() {
+                        chooseFile();
+                        flag2 = true;
+                      });
+                    },
+
+                  )
+                      : Container(),
+                  flag2 == true
+                      ? RaisedButton(
+                    color: Colors.blue,
+                    elevation: 5,
+                    child: Text(
+                      'Upload File', textScaleFactor: 1.2, style: TextStyle(
+                      color: Colors.white,
+                    ),),
+                    onPressed: () {
+                      setState(() {
+                        uploadFile();
+                      });
+                    },
+
+                  )
+                      : Container(),
+                  SizedBox(height: 5,),
+                  flag == true ? CircularProgressIndicator(
+                    backgroundColor: Colors.blue,
+                    strokeWidth: 10,
+                    semanticsLabel: 'Uploading Image',
+                    semanticsValue: 'Uploading Image',) : Container(),
+                  SizedBox(height: 7),
+                  flag == true
+                      ? Text('Uploading Please Wait..', textScaleFactor: 1.5,)
+                      : Container(),
+
+
+                  _uploadedFileURL != null ? Container(
+
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 2,),
+
+                        Text("Image Has Been Uploaded Successfully",
+                          textScaleFactor: 1.5, textAlign: TextAlign.center,),
+                        SizedBox(height: 5),
+                        RaisedButton(
+                          color: Colors.blue,
+                          elevation: 5,
+                          onPressed: () {
+                            setState(() {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return usersign(email);
+                                  }));
+                            });
+                          },
+                          child: Text(
+                            'Click Here To Continue', textScaleFactor: 1.2,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),),
+                        )
+
+
+                      ],
+                    ),
+                  ) : Container(),
+
+
+                ],
+               ),
+            )
+        ),
+
+      );
+    });
   }
   Widget uploadimage() {
     AssetImage assetImage = AssetImage('images/propic.png');

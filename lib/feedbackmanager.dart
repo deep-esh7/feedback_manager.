@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:feedback_manager/uploadpic.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:feedback_manager/BaseWidget.dart';
 
 
 class feedbackmanager extends StatefulWidget{
@@ -45,345 +47,363 @@ class feedbackmanagerstate extends State<feedbackmanager>{
 
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
+
+    return BaseWidget(builder: (context, sizingInformation)
+    {
+      return Scaffold(
 
 
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
-          )
-        ),
+          body: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('images/feed.jpg'), fit: BoxFit.cover
+                  )
+              ),
 
-      child: ListView(
-        children: <Widget>[
+              child: ListView(
 
-          SizedBox(
-            height: 50,
-          ),
-          brlimage(),
+                children: <Widget>[
 
-          SizedBox(
-            height: 20,
-          ),
-
-
-
-          Padding(
-              padding: EdgeInsets.all(3),
-
-              child:
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
-
-                elevation: 5,            margin: const EdgeInsets.only(top: 5),
-                child: Column(
-                  children: <Widget>[
-
-
-                    Row(children: <Widget>[
-                      Text("  Ques 1: How is BRL Team Work ?",style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 20.0
-                      ),textAlign: TextAlign.left,)
-                    ],),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 55),
-                        ),
-                        Text('  Ratings : ',textScaleFactor: 1.3,),
-                        FlutterRatingBar(
-                          initialRating: 0,
-                          fillColor: Colors.amber,
-                          borderColor: Colors.amber.withAlpha(50),
-                          allowHalfRating: true,
-                          onRatingUpdate: (ques1) {
-                            ans1rating=ques1;
-                          },
-                        ),
-                      ],
-                    ),
-                    TextField(
-                      controller: ans1,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '  ',
-                        labelText: '  Suggestions If Any',
-                        labelStyle: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black26,
-                            fontSize: 18.0),
-                      ),
-                    ),
-
-                  ],
-
-                ),
-              ))
-          ,
-         Padding(
-           padding: EdgeInsets.all(3),
-
-           child:
-          Card(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)
-            ),
-
-elevation: 5,            margin: const EdgeInsets.only(top: 5),
-            child: Column(
-              children: <Widget>[
-
-
-                Row(children: <Widget>[
-                  Text("  Ques 2: Does seniors are supportive?",style: TextStyle(
-                      fontWeight: FontWeight.w400, fontSize: 20.0
-                  ),textAlign: TextAlign.left,)
-                ],),
-                Row(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(top: 55),
-                    ),
-                    Text('  Ratings : ',textScaleFactor: 1.3,),
-                    FlutterRatingBar(
-                      initialRating: 0,
-                      fillColor: Colors.amber,
-                      borderColor: Colors.amber.withAlpha(50),
-                      allowHalfRating: true,
-                      onRatingUpdate: (ques2) {
-                        ans2rating=ques2;
-                        print(ques2);
-                      },
-                    ),
-                  ],
-                ),
-
-                TextField(
-                  controller: ans2,
-                  decoration: InputDecoration(
-                    hintText: '  ',
-                    labelText: '  Suggestions If Any',
-                    border: InputBorder.none,
-                    labelStyle: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.black26,
-                        fontSize: 18.0),
+                  SizedBox(
+                    height: 50,
                   ),
-                ),
+                  brlimage(),
 
-              ],
-
-            ),
-          ))
-          ,
-          Padding(
-              padding: EdgeInsets.all(3),
-
-              child:
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
-
-                elevation: 5,            margin: const EdgeInsets.only(top: 5),
-                child: Column(
-                  children: <Widget>[
-
-
-                    Row(children: <Widget>[
-                      Text("  Ques 3: How BRL can be improvised ?",style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 20.0
-                      ),textAlign: TextAlign.left,)
-                    ],),
-
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 55),
-                        ),
-                        Text('  Ratings : ',textScaleFactor: 1.3,),
-                        FlutterRatingBar(
-                          initialRating: 0,
-                          fillColor: Colors.amber,
-                          borderColor: Colors.amber.withAlpha(50),
-                          allowHalfRating: true,
-                          onRatingUpdate: (ques3) {
-                            ans3rating=ques3;
-                            print(ques3);
-                          },
-                        ),
-                      ],
-                    ),
-                    TextField(
-                      controller: ans3,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '  ',
-                        labelText: '  Suggestions If Any',
-                        labelStyle: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black26,
-                            fontSize: 18.0),
-                      ),
-                    ),
-
-                  ],
-
-                ),
-              )),
-          Padding(
-              padding: EdgeInsets.all(3),
-
-              child:
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
-
-                elevation: 5,            margin: const EdgeInsets.only(top: 5),
-                child: Column(
-                  children: <Widget>[
-
-
-                    Row(children: <Widget>[
-                      Expanded(
-
-                      child:Text("  Ques 4: Explain BRL working skills ?",style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 20.0
-                      ),textAlign: TextAlign.left,))
-                    ],),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(top: 55),
-                        ),
-                        Text('  Ratings : ',textScaleFactor: 1.3,),
-                        FlutterRatingBar(
-                          initialRating: 0,
-                          fillColor: Colors.amber,
-                          borderColor: Colors.amber.withAlpha(50),
-                          allowHalfRating: true,
-                          onRatingUpdate: (ques4) {
-                            ans4rating=ques4;
-                            print(ques4);
-                          },
-                        ),
-                      ],
-                    ),
-                    TextField(
-                      controller: ans4,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '  ',
-                        labelText: '  Suggestions If Any',
-                        labelStyle: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black26,
-                            fontSize: 18.0),
-                      ),
-                    ),
-
-                  ],
-
-                ),
-              ))
-          ,
-          Padding(
-              padding: EdgeInsets.all(3),
-
-              child:
-              Card(
-shape: RoundedRectangleBorder(
-  borderRadius: BorderRadius.circular(10.0)
-),
-                elevation: 5,            margin: const EdgeInsets.only(top: 5),
-                child: Column(
-                  children: <Widget>[
-
-
-                    Row(children: <Widget>[
-                     Expanded(
-                       child:
-                      Text("  Ques 5: Explain scope of BRL ?",style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 20.0
-                      ),textAlign: TextAlign.left,))
-                    ],),
-Row(
-  children: <Widget>[
-   Container(
-     margin: EdgeInsets.only(top: 55),
-   ),
-    Text('  Ratings : ',textScaleFactor: 1.3,),
-    FlutterRatingBar(
-      initialRating: 0,
-      fillColor: Colors.amber,
-      borderColor: Colors.amber.withAlpha(50),
-      allowHalfRating: true,
-      onRatingUpdate: (ques5) {
-        ans5rating=ques5;
-        print(ques5);
-      },
-    ),
-  ],
-),
-                  
-
-                    TextField(
-                      controller: ans5,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: '  ',
-                        labelText: '  Suggestions If Any',
-                        labelStyle: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black26,
-                            fontSize: 18.0),
-                      ),
-                    ),
-
-
-
-                  ],
-
-                ),
-              ))
-, Container( padding: EdgeInsets.only(left: 100,right: 100),
-            margin: EdgeInsets.all(17),
-            child: ButtonTheme(
-                height: 45.0,
-                minWidth: 5.0,
-                child: RaisedButton(
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-
-
+                  SizedBox(
+                    height: 20,
                   ),
-                  child: Text('CONTINUE ->'),
-                  color: Colors.blueAccent,
-                  textColor: Colors.white,
 
-                  elevation: 7.0,
-                  onPressed: () {
-                    setState(() {
-                      updateData();
 
-                      Navigator.push(context, MaterialPageRoute(builder: (context)
-                      {
-                        return uploadpic(email);
-                      }));
+                  Padding(
+                      padding: EdgeInsets.all(3),
 
-                    });
-                  },
-                )),
-          )
+                  child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
 
-        ],
-      ))
-    );
+                        elevation: 5, margin: const EdgeInsets.only(top: 5),
+                    child:
+                    Container(margin: EdgeInsets.only(left: 10) ,
+                        child: Column(
+                          children: <Widget>[
+
+
+                            Row(children: <Widget>[
+                              Text("Ques 1: How is BRL Team Work ?",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 20.0
+                                ), textAlign: TextAlign.left,)
+                            ],),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(top: 55),
+                                ),
+                                Text('Ratings : ', textScaleFactor: 1.3,),
+                                FlutterRatingBar(
+                                  initialRating: 0,
+                                  fillColor: Colors.amber,
+                                  borderColor: Colors.amber.withAlpha(50),
+                                  allowHalfRating: true,
+                                  onRatingUpdate: (ques1) {
+                                    ans1rating = ques1;
+                                  },
+                                ),
+                              ],
+                            ),
+                            TextField(
+                              controller: ans1,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '  ',
+                                labelText: 'Suggestions If Any',
+                                labelStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black26,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      )))
+                  ,
+                  Padding(
+                      padding: EdgeInsets.all(3),
+
+                      child:
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+
+                        elevation: 5, margin: const EdgeInsets.only(top: 5),
+                          child:
+                          Container(margin: EdgeInsets.only(left: 10) ,
+                        child: Column(
+                          children: <Widget>[
+
+
+                            Row(children: <Widget>[
+                              Text("Ques 2: Does seniors are supportive?",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 20.0
+                                ), textAlign: TextAlign.left,)
+                            ],),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(top: 55),
+                                ),
+                                Text('Ratings : ', textScaleFactor: 1.3,),
+                                FlutterRatingBar(
+                                  initialRating: 0,
+                                  fillColor: Colors.amber,
+                                  borderColor: Colors.amber.withAlpha(50),
+                                  allowHalfRating: true,
+                                  onRatingUpdate: (ques2) {
+                                    ans2rating = ques2;
+                                    print(ques2);
+                                  },
+                                ),
+                              ],
+                            ),
+
+                            TextField(
+                              controller: ans2,
+                              decoration: InputDecoration(
+                                hintText: '  ',
+                                labelText: 'Suggestions If Any',
+                                border: InputBorder.none,
+                                labelStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black26,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      )))
+                  ,
+                  Padding(
+                      padding: EdgeInsets.all(3),
+
+                      child:
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+
+                        elevation: 5, margin: const EdgeInsets.only(top: 5),
+                          child:
+                          Container(margin: EdgeInsets.only(left: 10) ,
+                        child: Column(
+                          children: <Widget>[
+
+
+                            Row(children: <Widget>[
+                              Text("Ques 3: How BRL can be improvised ?",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 20.0
+                                ), textAlign: TextAlign.left,)
+                            ],),
+
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(top: 55),
+                                ),
+                                Text('Ratings : ', textScaleFactor: 1.3,),
+                                FlutterRatingBar(
+                                  initialRating: 0,
+                                  fillColor: Colors.amber,
+                                  borderColor: Colors.amber.withAlpha(50),
+                                  allowHalfRating: true,
+                                  onRatingUpdate: (ques3) {
+                                    ans3rating = ques3;
+                                    print(ques3);
+                                  },
+                                ),
+                              ],
+                            ),
+                            TextField(
+                              controller: ans3,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '  ',
+                                labelText: 'Suggestions If Any',
+                                labelStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black26,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      ))),
+                  Padding(
+                      padding: EdgeInsets.all(3),
+
+                      child:
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+
+                        elevation: 5, margin: const EdgeInsets.only(top: 5), child:
+                      Container(margin: EdgeInsets.only(left: 10) ,
+                        child: Column(
+                          children: <Widget>[
+
+
+                            Row(children: <Widget>[
+                              Expanded(
+
+                                  child: Text(
+                                    "Ques 4: Explain BRL working skills ?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20.0
+                                    ), textAlign: TextAlign.left,))
+                            ],),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(top: 55),
+                                ),
+                                Text('Ratings : ', textScaleFactor: 1.3,),
+                                FlutterRatingBar(
+                                  initialRating: 0,
+                                  fillColor: Colors.amber,
+                                  borderColor: Colors.amber.withAlpha(50),
+                                  allowHalfRating: true,
+                                  onRatingUpdate: (ques4) {
+                                    ans4rating = ques4;
+                                    print(ques4);
+                                  },
+                                ),
+                              ],
+                            ),
+                            TextField(
+                              controller: ans4,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '  ',
+                                labelText: 'Suggestions If Any',
+                                labelStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black26,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+
+                          ],
+
+                        ),
+                      )))
+                  ,
+                  Padding(
+                      padding: EdgeInsets.all(3),
+
+                      child:
+                      Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        elevation: 5, margin: const EdgeInsets.only(top: 5),
+                          child:
+                          Container(margin: EdgeInsets.only(left: 10) ,
+                        child: Column(
+                          children: <Widget>[
+
+
+                            Row(children: <Widget>[
+                              Expanded(
+                                  child:
+                                  Text("Ques 5: Explain scope of BRL ?",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20.0
+                                    ), textAlign: TextAlign.left,))
+                            ],),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(top: 55),
+                                ),
+                                Text('Ratings : ', textScaleFactor: 1.3,),
+                                FlutterRatingBar(
+                                  initialRating: 0,
+                                  fillColor: Colors.amber,
+                                  borderColor: Colors.amber.withAlpha(50),
+                                  allowHalfRating: true,
+                                  onRatingUpdate: (ques5) {
+                                    ans5rating = ques5;
+                                    print(ques5);
+                                  },
+                                ),
+                              ],
+                            ),
+
+
+                            TextField(
+                              controller: ans5,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '  ',
+                                labelText: 'Suggestions If Any',
+                                labelStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black26,
+                                    fontSize: 18.0),
+                              ),
+                            ),
+
+
+                          ],
+
+                        ),
+                      )))
+                  , Container(padding: EdgeInsets.only(left: 100, right: 100),
+                    margin: EdgeInsets.all(17),
+                    child: ButtonTheme(
+                        height: 45.0,
+                        minWidth: 5.0,
+                        child: RaisedButton(
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+
+
+                          ),
+                          child: Text('CONTINUE ->'),
+                          color: Colors.blueAccent,
+                          textColor: Colors.white,
+
+                          elevation: 7.0,
+                          onPressed: () {
+                            setState(() {
+                              updateData();
+
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return uploadpic(email);
+                                  }));
+                            });
+                          },
+                        )),
+                  )
+
+                ],
+              ))
+      );
+    });
   }
 
   Widget brlimage() {

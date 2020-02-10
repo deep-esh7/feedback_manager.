@@ -4,6 +4,8 @@ import 'package:feedback_manager/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'BaseWidget.dart';
 
 
 
@@ -44,6 +46,10 @@ class registerstate extends State<register> {
         .of(context)
         .textTheme
         .subhead;
+
+    return BaseWidget(builder: (context, sizingInformation) {
+
+
     // TODO: implement build
     return Scaffold(
 
@@ -56,11 +62,32 @@ class registerstate extends State<register> {
         child: ListView(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(45.0),
+              margin: EdgeInsets.all(20.0),
 
             ),
-brlimage()
-         ,
+        Container(
+            child: Column
+              (
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 50,
+                  child: Image.asset('images/blockchain.png',height: 80, width: 80,),
+                ),
+                Padding(padding: EdgeInsets.all(10),
+                  child: Text(
+                    'BRL Feedback App',
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                    ),
+                  ),)
+              ],
+            )
+        ),
+
             Container(
               margin: EdgeInsets.all(10.0),
 
@@ -78,28 +105,53 @@ brlimage()
                   Theme(
                   data: Theme.of(context).copyWith(splashColor: Colors.transparent),
                   child:
-
+Container(height: 50, child:
                   TextFormField(
+
+
                         controller: fnamecont,
 
                         decoration: InputDecoration(
 
-                          fillColor: Colors.white,
+                          fillColor: Colors.white10,
                           filled: true,
                           errorStyle: TextStyle(
+
                             color: Colors.white,
-                            fontSize: 12.0,
+                            fontSize: 8.0,
                           ),
 
 
                           hintText: 'First Name',
+                          hintStyle: TextStyle(
+
+
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white24,
+                              fontSize: 16.0),
                           labelStyle: TextStyle(
+
+
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
 
                           border: OutlineInputBorder(
+
+
+
+
                             borderRadius: BorderRadius.circular(25.0),
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                            borderRadius: BorderRadius.circular(25.0)
                           ),
                         ),
                         validator: (String value) {
@@ -111,28 +163,55 @@ brlimage()
                           }
 
                         },
-                      )),
+                      ))),
                       SizedBox(
-                        height: 2,
+                        height: 10,
                       ),
+
+            Container(height: 50, child:
                       TextFormField(
                         controller: lnamecont,
                         decoration: InputDecoration(
-                          fillColor: Colors.white,
+
+                          fillColor: Colors.white10,
                           filled: true,
                           errorStyle: TextStyle(
+
                             color: Colors.white,
-                            fontSize: 12.0,
+                            fontSize: 8.0,
                           ),
 
-                          hintText: 'Last Name',
 
+                          hintText: 'Last Name',
+                          hintStyle: TextStyle(
+
+
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white24,
+                              fontSize: 16.0),
                           labelStyle: TextStyle(
+
+
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
+
                           border: OutlineInputBorder(
+
+
+
+
                             borderRadius: BorderRadius.circular(25.0),
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
                           ),
                         ),
                         validator: (String value) {
@@ -143,28 +222,54 @@ brlimage()
                             return 'Enter Name Correctly Please';
                           }
                         },
-                      ),
+                      )),
                       SizedBox(
-                        height: 2,
+                        height: 10,
                       ),
-                      TextFormField(
+            Container(height: 50, child: TextFormField(
                         controller: agecont,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          fillColor: Colors.white,
+
+                          fillColor: Colors.white10,
                           filled: true,
                           errorStyle: TextStyle(
+
                             color: Colors.white,
-                            fontSize: 12.0,
+                            fontSize: 8.0,
                           ),
 
-                          hintText: 'Age',
+
+                          hintText: 'Enter Age',
+                          hintStyle: TextStyle(
+
+
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white24,
+                              fontSize: 16.0),
                           labelStyle: TextStyle(
+
+
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
+
                           border: OutlineInputBorder(
+
+
+
+
                             borderRadius: BorderRadius.circular(25.0),
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
                           ),
                         ),
                         validator: (String value) {
@@ -172,31 +277,55 @@ brlimage()
                             return 'Please Enter Your Age';
                           }
                         },
-                      ),
+                      )),
                       SizedBox(
-                        height: 2,
+                        height: 10,
                       ),
 
-                      TextFormField(
+            Container(height: 50, child:  TextFormField(
 
                         controller: emailcont,
                         decoration: InputDecoration(
-                          fillColor: Colors.white,
+
+                          fillColor: Colors.white10,
                           filled: true,
                           errorStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12.0,
 
+                            color: Colors.white,
+                            fontSize: 8.0,
                           ),
 
+
                           hintText: 'Email ID',
+                          hintStyle: TextStyle(
+
+
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white24,
+                              fontSize: 16.0),
                           labelStyle: TextStyle(
+
 
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
+
                           border: OutlineInputBorder(
+
+
+
+
                             borderRadius: BorderRadius.circular(25.0),
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
                           ),
                         ),
                         validator: (String value) {
@@ -205,28 +334,54 @@ brlimage()
                           }
 
                         },
-                      ),
+                      )),
                       SizedBox(
-                        height: 2,
+                        height: 10,
                       ),
-                      TextFormField(
+            Container(height: 50, child: TextFormField(
                         keyboardType: TextInputType.number,
                         controller: mobilecont,
                         decoration: InputDecoration(
-                          fillColor: Colors.white,
+
+                          fillColor: Colors.white10,
                           filled: true,
                           errorStyle: TextStyle(
+
                             color: Colors.white,
-                            fontSize: 12.0,
+                            fontSize: 8.0,
                           ),
 
+
                           hintText: 'Mobile No.',
+                          hintStyle: TextStyle(
+
+
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white24,
+                              fontSize: 16.0),
                           labelStyle: TextStyle(
+
+
                               fontStyle: FontStyle.italic,
                               color: Colors.black26,
                               fontSize: 18.0),
+
                           border: OutlineInputBorder(
+
+
+
+
                             borderRadius: BorderRadius.circular(25.0),
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white10, width: 1.0),
+                              borderRadius: BorderRadius.circular(25.0)
                           ),
                         ),
                         validator: (String value) {
@@ -235,26 +390,26 @@ brlimage()
                           }
 
                         },
-                      ),
+                      )),
                       SizedBox(
-                        height: 5,
+                        height: 10,
                       ),
 
                       ButtonTheme(
                           height: 45.0,
-                          minWidth: 10.0,
+                          minWidth: 80.0,
                           child: RaisedButton(
 
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(20.0),
 
 
                             ),
                             child: Text('Give Feedback ->'),
-                            color: Colors.blueAccent,
-                            textColor: Colors.white,
+                            color: Colors.lightBlue,
+                            textColor: Colors.white70,
 
-                            elevation: 7.0,
+                            elevation: 8.0,
                             onPressed: () {
                               setState(() {
                                 if (key.currentState.validate()) {
@@ -276,7 +431,7 @@ brlimage()
         ),
       ),
     );
-  }
+  });}
 
   Widget brlimage() {
     AssetImage assetImage = AssetImage('images/brl.png');

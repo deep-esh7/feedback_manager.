@@ -25,6 +25,8 @@ dependencies:
   flutter_signature_pad: ^2.0.1
   screenshot: ^0.1.1
   flutter_svg: ^0.17.1
+  url_launcher: ^3.0.3
+  device_preview: 0.1.9-beta
 
   firebase_auth:
   flutter:
@@ -66,6 +68,8 @@ flutter:
     - images/bg5.png
     - images/bg6.jpg
     - images/bg7.jfif
+    - images/facebook.png
+    - images/instagram.png
     -
   #  - images/a_dot_ham.jpeg
 
